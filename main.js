@@ -16,11 +16,13 @@ const calculatorHistory = document.querySelector('.history');
 
 const historyBtn = document.querySelector('.history-btn');
 
+
 let result = '';
 
 function displayNumbers () {
         if(this.textContent === '.' && currentNumber.innerHTML.includes('.')) return;
         if(this.textContent === '.' && currentNumber.innerHTML === '') return currentNumber.innerHTML = '.0'
+
         currentNumber.innerHTML += this.textContent;
 }
 
@@ -64,7 +66,7 @@ function showResult () {
         case ':':
         result = b / a;
         break;
-        case '2^':
+        case '^':
         result = b ** a;
         break;
     }
@@ -84,15 +86,12 @@ function addToHistory () {
     calculatorHistory.appendChild(newHistoryItem);
 }
 
-
 function clearHistory () {
     calculatorHistory.textContent = '';
     if(calculatorHistory.textContent === '') {
         historyBtn.classList.remove('active');
     }
 }
-
-
 
 function clearScreen () {
     result = '';
@@ -106,12 +105,10 @@ function clearScreen () {
 
  equalsButton.addEventListener('click', showResult);
 
-
  clearButton.addEventListener('click', clearScreen);
 
  numbersButtons.forEach((button) => {
      button.addEventListener('click', displayNumbers)
-})
-
+ })
 
  historyBtn.addEventListener('click', clearHistory);
